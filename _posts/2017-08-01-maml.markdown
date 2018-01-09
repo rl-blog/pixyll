@@ -2,8 +2,8 @@
 layout:     post
 title:      Model Agnostic Meta Learning
 date:       2017-08-01 15:31:19
-summary:    Time-Contrastive Networks - Self-Supervised Learning from Multi-View Observation
-categories: unsupervised-learning imitation
+summary:    Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks
+categories: meta-learning
 ---
 
 One of the big uncracked problems in machine learning that researchers are now taking a crack at is “meta learning”. Meta learning is concerned with: if we have learned to perform 100 tasks, can we learn the 101st a lot more efficiently? Note that this isn’t just saying can we perform better on 101st task using the previous tasks’ knowledge. It is saying can we learn the 101st one more efficiently.
