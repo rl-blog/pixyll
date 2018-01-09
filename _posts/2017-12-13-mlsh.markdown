@@ -10,9 +10,7 @@ Reinforcement algorithms are typically used to learn individual tasks from scrat
 
 Intuitively, we humans know how to use a shared set of important skills for various tasks - walking, object manipulation, etc are broadly applicable to many tasks that we perform daily. It’d be nice if we can get agents to learn these skills and choose the right one to use for each task. This work by Kevin Frans (who by the way was a high school student when he produced this work at OpenAI) addresses this problem in a creative way. The goal is similar to the meta learning goal - to learn faster on unseen tasks by sharing information between different but related tasks. Let’s say we want to do do well on a bunch of tasks. It might not be optimal to learn one policy because these tasks might have much more optimal policies when trained alone on that task.
 
-In this approach, the main idea is to train a bunch of “sub-policies” (which can be interpreted as skills) and also train a master policy, which given a task, picks which sub-policy to use for that task. The authors look at a reinforcement learning setting over a distribution of tasks. The goal is to maximize expected return in an episode over this distribution of tasks. The architecture proposed is as follows: 
-
-![useful image]({{ site.url }}/images/mlsh.png)
+In this approach, the main idea is to train a bunch of “sub-policies” (which can be interpreted as skills) and also train a master policy, which given a task, picks which sub-policy to use for that task. The authors look at a reinforcement learning setting over a distribution of tasks. The goal is to maximize expected return in an episode over this distribution of tasks. 
 
 They let the master policy choose a sub-policy (warm up), train the chosen subpolicy on the task for a while, and give the master policy a chance to update its guess. After a while, we switch out the task so that the master policy gets plenty opportunity to choose the right sub-policy and alter (by gradient descent) how it makes that decision.
 
