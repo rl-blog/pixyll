@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      A Failure is Simply a Success at Something Else
+title:      Failure is Simply a Success at Something Else
 date:       2017-10-12 15:31:19
 summary:    Hindsight Experience Replay
 categories: sample-efficiency
