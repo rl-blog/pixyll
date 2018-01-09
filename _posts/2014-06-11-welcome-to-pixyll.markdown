@@ -2,7 +2,7 @@
 layout:     post
 title:      Effective learning with simulation error by using an ensemble of environments.
 date:       2017-06 15:31:19
-summary:    EPOpt: Robust Neural Net Policies Using Ensembles by Rajeswaran et al.
+summary:    EPOpt - Robust Neural Net Policies Using Ensembles by Rajeswaran et al.
 categories: sim2real
 ---
 
