@@ -3,7 +3,7 @@ layout:     post
 title:      Modular Policies for Multi-task Learning
 date:       2017-07-09 15:31:19
 summary:    Learning Modular Neural Network Policies for Multi-Task and Multi-Robot Transfer
-categories: sim2real
+categories: multi-task
 ---
 
 This is another in a series of work that’s geared towards transfer learning and multi-task learning in RL. This work from the Berkely AI Research introduces ““task-specific” and “robot-specific” modules, where the task-specific modules are shared across robots, and the robot-specific modules are shared across all tasks on that robot.
