@@ -2,8 +2,8 @@
 layout:     post
 title:      Human Pose Imitation with Self-Supervised Learning
 date:       2017-09-13 15:31:19
-summary:    
-categories: meta-learning
+summary:    Time-Contrastive Networks. Self-Supervised Learning from Multi-View Observation
+categories: unsupervised-learning imitation
 ---
 
 This is a super exciting paper from Google Brain. In this work, the authors train a robot to imitate human behavior by watching a single video of the demonstration! That too by taking advantage of a large collection of unlabelled data. Woah. How? Lets dive in.
@@ -20,4 +20,4 @@ For the supervised imitation setting, they first train a TCN from multi view on 
 
 An additional interesting aspect is that they use VR to for the human supervision in pose imitation. This makes us wonder if large scale adoption of VR can give us a whole new kind of training data that we could use for robotic learning problems.
 
-Head over to arxiv to read about the details of the algorithm, the experimental setup and more cool stuff.
+Head over to [arxiv](https://sermanet.github.io/tcn/) to read about the details of the algorithm, the experimental setup and more cool stuff.
