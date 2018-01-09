@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      Modular Policies for Multi-task Learning
+date:       2017-07-09 15:31:19
+summary:    Learning Modular Neural Network Policies for Multi-Task and Multi-Robot Transfer
+categories: sim2real
+---
+
+This is another in a series of work that’s geared towards transfer learning and multi-task learning in RL. This work from the Berkely AI Research introduces ““task-specific” and “robot-specific” modules, where the task-specific modules are shared across robots, and the robot-specific modules are shared across all tasks on that robot.
+
+The key insight here is that when a robot learns to perform a task end to end, with a traditional RL method (like some policy gradient method), part of what it’s learning is how to interpret the environment and part of what its learning is its own dynamics. If we wanted to train a range of robot platforms on a range of tasks, it’d be nice if we could decouple the task-specific learning from the robot-specific learning so that we can operate on many robot-task pairs at least without having to train all combinations from scratch, if not get zero-shot performance on new pairs. 
+
+The framework introduced here is applicable to domains where we can split states and observations into task specific and robot specific components and express the cost as a sum of separate extrinsic (environment) and intrinsic (robot dependent) state. If we have $$n$$ robots with different configurations and $$n$$ different tasks, in a usual RL setting we’d learn $$n^2$$ policies. But in this work we learn a “network module” for each task and for each robot, which means we only have to learn $$2n$$ modules. After this we can compose these to work on any task-robot pair (called a world). 
+
+This paper deals with the following task-robot combination as one of the examples: a robot arm with 3 joints vs one with 4 joints and the task of pushing a block vs opening a drawer. The set of all task-robot pairs is the universe. Let $$f_i$$ be the module for robot $$i$$ (this has learnt the details of controlling $$i$$). Let $$g_j$$ be the module for task $$j$$. This has learnt the details relevant to task $$j$$. We compute the control output for a given robot-task pair by the composition $$f_i(g_j(o_j), o_i)$$ where $$o_i$$ is the robot part of the observation and $$o_j$$ is the task part of the observation. Note that the output of each of these modules is a latent representation and doesn’t necessarily correspond to any easily interpretable semantic meaning. 
+
+Each module is trained with at least three variants of the other degree of variation. They find overfitting to be a problem because of only training with 3 robots and 3 tasks. To work around this, they regularize by limiting model capacity by limiting the number of hidden units in the output of the first module which likely to force compact representations that do well and by using dropout.
+
+The RL algorithm they used here is guided policy search but they claim that this is applicable to a larger set and that this was just what they chose. We won’t go into guided policy search, but its main idea is that it trains a neural network policy with some supervised regression-based guiding by a LQR like controller.
+
+In some simple cases, they are able to achieve zero-shot performance. On more complicated tasks, this method provides an excellent initialization and training for just a few iterations on the target world gives good results.
+
+Head over to [arxiv](https://arxiv.org/abs/1609.07088) to read about the details of the algorithm, the experimental setup and more cool stuff.
