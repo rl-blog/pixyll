@@ -6,7 +6,7 @@ summary:    Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks by
 categories: meta-learning
 ---
 
-One of the big uncracked problems in machine learning that researchers are now taking a crack at is “meta learning”. Meta learning is concerned with: if we have learned to perform 100 tasks, can we learn the 101st a lot more efficiently? note that this isn’t just saying can we perform better on 101st task using the previous tasks’ knowledge. It is saying can we learn the 101st one more efficiently.
+One of the big uncracked problems in machine learning that researchers are now taking a crack at is “meta learning”. Meta learning is concerned with: if we have learned to perform 100 tasks, can we learn the 101st a lot more efficiently? Note that this isn’t just saying can we perform better on 101st task using the previous tasks’ knowledge. It is saying can we learn the 101st one more efficiently.
 
 Ideally, a good meta-learned learner can explore more intelligently, avoid trying new actions that are known to be useless and acquire the right features more quickly. Today we will look at one such approach. This work comes from Chelsea Finn and team at UC Berkeley. In their work, they train the model such that the parameters are a a small number of gradient steps away from generalizing well on a new task. The method described here is applicable to not just RL, but also supervised regression and classification settings. The goal is to train it so as to maximize the sensitivity of the loss functions of new tasks with respect to the parameters. That is, small local changes should quickly give us good generalization on the new task. At least that’s the goal.
 
