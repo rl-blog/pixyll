@@ -115,6 +115,7 @@ text:
   og_locale: 'en_US'
 
 # Build settings
+exclude: [vendor]
 markdown:     kramdown
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
