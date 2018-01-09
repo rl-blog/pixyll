@@ -16,4 +16,4 @@ The algorithm is quite simple and principled: They first sample a batch of tasks
 
 By framing the a task as having a loss function $$L(x_1, a_1...x_n, a_n)$$ with $$n = 1$$ specifying the supervised learning case (because episode length is 1), MAML can be applied to both RL and supervised regression and classification problems.
 
-Head over to arxiv to read about the details of the algorithm, the experimental setup and more cool stuff.
+Head over to [arxiv](https://arxiv.org/abs/1703.03400) to read about the details of the algorithm, the experimental setup and more cool stuff.
