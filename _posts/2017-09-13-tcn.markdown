@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      Human Pose Imitation with Self-Supervised Learning
+date:       2017-09-13 15:31:19
+summary:    
+categories: meta-learning
+---
+
+This is a super exciting paper from Google Brain. In this work, the authors train a robot to imitate human behavior by watching a single video of the demonstration! That too by taking advantage of a large collection of unlabelled data. Woah. How? Lets dive in.
+
+The first step is to learn representations that are good at figuring out factors of variation from a video. Think of a video of a human pouring water into a glass. That is a really high dimensional space of pixels and if a robot were to try to imitate it directly, its not clear for a naive, untrained agent, what information in that video really matters and how to use that information for imitation. So the first step is to train a good representation. Consider two cameras from different views that are recording the same demonstration. If we time sync these cameras, we get corresponding frames from each video at each time step. They train an embedding that is good at given two frames, one from each camera, did it come from the same instant of time. If you think about it, such an embedding might need to learn what stage a task is in to do well on its loss function. In effect, they get a lower dimensional representation from each frame in the video, that hopefully encodes useful information. They call this the time-contrastive network (TCN).
+
+They then use this in a RL task imitation setting and in a supervised pose imitation setting. They use the thus constructed embeddings to construct a reward function that is based on the embedding distance between the human video demonstration and the camera images recorded by the robot trying to perform the task.
+
+“..by optimizing this reward function through trial and error we are able to mimic demonstrated behaviors with a robot by only utilizing its visual input and the video demonstrations for learning (just one video demo, single angle)..”
+
+Note that they use RL (an algorithm called PILQR which we won’t go into here) to learn to generate policies that maximize the sum of rewards. The reward function at each time step they are using here is based on a euclidean distance between the embedding vectors of the demo video frame vs the robot video frame at each timestep.
+
+For the supervised imitation setting, they first train a TCN from multi view on a dataset with human and image poses. Using this TCN embedding representation of robot image as input, they then train a regression network to regress from TCN representation of robot pose image to internal joint state. They add some human supervised data to this supervised regression dataset too. To be clear, in this regression problem, the ground truth labels are the actual robot pose readings. Images of humans and images of robot serve as input data. That’s it, they are able to imitate some simple poses without any explicit alignments specified between human and robot joints.
+
+An additional interesting aspect is that they use VR to for the human supervision in pose imitation. This makes us wonder if large scale adoption of VR can give us a whole new kind of training data that we could use for robotic learning problems.
+
+Head over to arxiv to read about the details of the algorithm, the experimental setup and more cool stuff.
