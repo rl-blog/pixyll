@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      Learning Hierarchies to Solve a Range of RL Tasks
+date:       2017-12-13 15:31:19
+summary:    Meta Learning Shared Hierarchies by Frans et al.
+categories: sim2real
+---
+
+Reinforcement algorithms are typically used to learn individual tasks from scratch. While a large body of research seeks to improve the sample efficiency of reinforcement learning algorithms (eg. TRPO), there is a limit to learning speed in the absence of prior knowledge. This is especially the case for model free algorithms that start by assuming little to nothing about the dynamics of the environment.
+
+Intuitively, we humans know how to use a shared set of important skills for various tasks - walking, object manipulation, etc are broadly applicable to many tasks that we perform daily. It’d be nice if we can get agents to learn these skills and choose the right one to use for each task. This work by Kevin Frans (who by the way was a high school student when he produced this work at OpenAI) addresses this problem in a creative way. The goal is similar to the meta learning goal - to learn faster on unseen tasks by sharing information between different but related tasks. Let’s say we want to do do well on a bunch of tasks. It might not be optimal to learn one policy because these tasks might have much more optimal policies when trained alone on that task.
+
+In this approach, the main idea is to train a bunch of “sub-policies” (which can be interpreted as skills) and also train a master policy, which given a task, picks which sub-policy to use for that task. The authors look at a reinforcement learning setting over a distribution of tasks. The goal is to maximize expected return in an episode over this distribution of tasks. The architecture proposed is as follows: 
+
+![useful image]({{ site.url }}/images/mlsh.png)
+
+They let the master policy choose a sub-policy (warm up), train the chosen subpolicy on the task for a while, and give the master policy a chance to update its guess. After a while, we switch out the task so that the master policy gets plenty opportunity to choose the right sub-policy and alter (by gradient descent) how it makes that decision.
+
+“By discovering a strong set of sub-policies φ, learning on new tasks can be handled solely by updating the master policy θ. Furthermore, since the master policy chooses actions only every N time steps, it sees a learning problem with a horizon that is only 1/N times as long.”
+
+They intuit that warmup makes the master policy picks the right $$\phi_k$$ for the task. and then they optimize that candidate further, while allowing the master policy to update its subpolicy decision making every few steps.
+
+Head over to [arxiv](https://arxiv.org/abs/1710.09767) to read about the details of the algorithm, the experimental setup and more cool stuff.
