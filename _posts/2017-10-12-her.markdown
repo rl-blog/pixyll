@@ -7,9 +7,9 @@ categories: sample-efficiency
 ---
 
 
-This is a quite intuitive, yet promising new idea from the good folks at OpenAI. This works opens up avenues to practically learn some tasks that are simply out of our reach with current popular RL techniques.
+This is a quite intuitive, yet promising new idea from the good folks at OpenAI. This work opens up avenues to practically learn some tasks that are simply out of our reach with current popular RL techniques.
 
-Sparse rewards is one of the big challenges in RL today. This work addresses “sample-efficient learning from rewards which are sparse and binary. It can be combined with an arbitrary off-policy RL algorithm”. They test this on three tasks: pushing, sliding, and pick-and-place, each using only binary rewards indicating whether or not the task is completed. Notice how these are sparse reward problems, that are considered hard to solve by today’s dominant deep RL methods.
+Sparse rewards is one of the big challenges in RL today. This is related to the classic credit assignment problem. If you get little to no learning signal - you failed, you failed, you failed - how is that useful? This work addresses “sample-efficient learning from rewards which are sparse and binary. It can be combined with an arbitrary off-policy RL algorithm”. They test this on three tasks: pushing, sliding, and pick-and-place, each using only binary rewards indicating whether or not the task is completed. Notice how these are sparse reward problems, that are considered hard to solve by today’s dominant deep RL methods.
 
 A lot of RL today involves engineering reward functions each step of the way. You’ll see this is the case in many OpenAI Gym environments. This is cumbersom, doesn’t always make sense, in many cases is a bad proxy for the real goal and sometimes, outright not possible. So if we can effectively train on binary, sparse reward signals, that could be huge!
 
