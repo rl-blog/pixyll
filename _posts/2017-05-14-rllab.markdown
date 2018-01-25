@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Designing Neural Net Architectures with Reinforcement Learning
+title:      Benchmarking Recent Progress in Deep RL for Continuous Control
 date:       2017-05-14 15:31:19
 summary:    Benchmarking Deep Reinforcement Learning for Continuous Control
 
