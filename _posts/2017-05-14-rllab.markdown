@@ -1,0 +1,20 @@
+---
+layout:     post
+title:      Designing Neural Net Architectures with Reinforcement Learning
+date:       2017-05-14 15:31:19
+summary:    Benchmarking Deep Reinforcement Learning for Continuous Control
+
+categories: algorithms
+---
+
+The motivation for this paper comes from the fact that there has been a lot of recent progress in deep reinforcement learning, but it’s been hard to quantify progress in a more scientific manner because of the lack of standard benchmarks like MNIST and ImageNet in computer vision. In this paper, they present a range of tasks that can be used as a benchmark along with some novel findings. They also present a standardized implementation of some of the algorithms called rllab. (github.com/rllab)
+
+They divide the tasks in the benchmark into four categories: basic tasks, locomotion tasks, partially observable tasks and hierarchical tasks. The full listing of tasks is in the paper; they divide the tasks into a few categories. The basic tasks are things like Cartpole and Mountain car. The locomotion tasks (like Hopper and HalfCheetah) are challenging due to the number of degrees of freedom. The locomotion tasks also have quite a few local minima, so exploration is important. “We penalize for excessive controls as well as falling over, during the initial stage of learning, when the robot is not yet able to move forward for a sufficient distance without falling, apparent local optima exist including staying at the origin or diving forward slowly.” 
+
+The paper also presents some variants of locomotion tasks with the following types of noise: limited observations → 1. only position, no velocity 2. noisy observations with delayed actions and 3. system identification → the underlying physical models are varied across episodes, so agent has to learn to be robust and adapt to the current model from observations and action history. In addition, the benchmark provides some hierarchical tasks where learning a low level skill (like locomotion) is useful for a task that involves some other higher level goal (like collecting food from a area). the higher level tasks involve the lower level skills.
+
+Next, the authors summarize a few recent RL algorithms like policy gradient, TRPO, DDPG and some older ones. I’ve written up notes on common RL algorithms at https://ml-sparknotes.github.io/deepreinforcementlearning.html. To tune their algorithm implementations, in most cases they use a hyperparameter grid search and measure a metric which is $$mean(returns) - std(returns)$$ in order to penalize high variance. They observe that vanilla Reinforce suffers from convergence to local optima, unlike TRPO. “By visualizing the final policies, we can see that REINFORCE results in policies that tend to jump forward and fall over to maximize short-term return instead of acquiring a stable walking gait to maximize long-term return.” They observer TRPO outperforms other batch algorithms due to constraining the change in policy distribution resulting in more stable learning.
+
+The authors mention that DDPG is the is able to converge the fastest of all the batch algorithms they tried, presumably because of the use of replay buffer and better sample efficiency. They also noted that TRPO performed a lot better than vanilla Reinforce on policies that used RNNs, presumably because the small changes in parameter space leading to big changes in policy space effect gets amplified. An interesting note is that all of the algorithms they implemented did poorly on hierarchical learning tasks. See my notes on the OpenAI’s Meta Learning Shared Hierarchies paper for a possible approach to hierarchical learning tasks. 
+
+Head over to [arxiv](https://arxiv.org/abs/1604.06778) to read about the details of the algorithm, the experimental setup and more cool stuff.
