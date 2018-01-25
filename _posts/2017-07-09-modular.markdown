@@ -6,7 +6,7 @@ summary:    Learning Modular Neural Network Policies for Multi-Task and Multi-Ro
 categories: multi-task
 ---
 
-This is another in a series of work that’s geared towards transfer learning and multi-task learning in RL. This work by Coline Devin and Abhishek Gupta at Berkely AI Research introduces “task-specific” and “robot-specific” modules, where the task-specific modules are shared across robots performing that task, and the robot-specific modules are shared across all tasks on that robot.
+This paper(https://arxiv.org/abs/1609.07088) is another in a series of work that’s geared towards transfer learning and multi-task learning in RL. This work by Coline Devin and Abhishek Gupta at Berkely AI Research introduces “task-specific” and “robot-specific” modules, where the task-specific modules are shared across robots performing that task, and the robot-specific modules are shared across all tasks on that robot.
 
 The key insight here is that when a robot learns to perform a task end to end, with a traditional RL method (like some policy gradient method), part of what it’s learning is how to interpret the environment and part of what its learning is its own dynamics. If we wanted to train a range of robot platforms on a range of tasks, it’d be nice if we could decouple the task-specific learning from the robot-specific learning so that we can operate on many robot-task pairs at least without having to train all combinations from scratch, if not get zero-shot performance on new pairs. 
 
