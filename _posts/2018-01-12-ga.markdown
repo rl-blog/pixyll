@@ -2,7 +2,7 @@
 layout:     post
 title:      Training Neural Nets with Simple Genetic Algorithms
 date:       2018-01-12 15:31:19
-summary:    Deep Neuroevolution: Genetic Algorithms Are a Competitive Alternative for Training Deep Neural Networks for RL
+summary:    test
 
 categories: optimization
 ---
