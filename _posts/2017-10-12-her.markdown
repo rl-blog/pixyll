@@ -7,7 +7,7 @@ categories: sample-efficiency
 ---
 
 
-This is an intuitive, yet promising new idea from the good folks at OpenAI. This work opens up avenues to make learning some tasks practical that are otherwise simply out of reach with our current popular RL techniques.
+This is an intuitive, yet promising new [paper](https://arxiv.org/abs/1707.01495) from the folks at OpenAI. This work opens up avenues to make learning some tasks practical that are otherwise simply out of reach with our current popular RL techniques.
 
 Sparse rewards is one of the big challenges in RL today. This is related to the classic credit assignment problem. If you get little to no learning signal - you failed, you failed, you failed - how is that useful? This work addresses “sample-efficient learning from rewards which are sparse and binary. It can be combined with an arbitrary off-policy RL algorithm”. They test this on three tasks: pushing, sliding, and pick-and-place, each using only binary rewards indicating whether or not the task is completed. Since these are sparse reward problems, they are considered hard to solve by today’s dominant deep RL methods.
 
