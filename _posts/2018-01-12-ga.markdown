@@ -4,7 +4,7 @@ title:      Training Neural Nets with Simple Genetic Algorithms
 date:       2018-01-12 15:31:19
 summary:    Deep Neuroevolution: Genetic Algorithms Are a Competitive Alternative for Training Deep Neural Networks for RL
 
-categories: sim2real
+categories: optimization
 ---
 
 This is going to be short post in honor of the simplicity of the algorithm described here. This paper from Uber AI Labs demonstrates that the weights of neural nets can be trained to perform competitively using simple genetic algorithms, instead of gradient descent or other gradient based methods. This method of training neural nets is very different than what we will see almost anywhere else. They also show that in tasks that need a lot of exploration and are sparse-reward tasks, genetic methods can do better than DQN, A3C and others.
