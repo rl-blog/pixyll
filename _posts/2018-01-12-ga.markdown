@@ -2,7 +2,7 @@
 layout:     post
 title:      Training Neural Nets with Simple Genetic Algorithms
 date:       2018-01-12 15:31:19
-summary:    test
+summary:    Deep Neuroevolution: Genetic Algorithms to Train Deep Nets for RL
 
 categories: optimization
 ---
