@@ -1,0 +1,19 @@
+---
+layout:     post
+title:      Training Neural Nets with Simple Genetic Algorithms
+date:       2018-01-12 15:31:19
+summary:    Deep Neuroevolution: Genetic Algorithms Are a Competitive Alternative for Training Deep Neural Networks for RL
+
+categories: sim2real
+---
+
+This is going to be short post in honor of the simplicity of the algorithm described here. This paper from Uber AI Labs demonstrates that the weights of neural nets can be trained to perform competitively using simple genetic algorithms, instead of gradient descent or other gradient based methods. This method of training neural nets is very different than what we will see almost anywhere else. They also show that in tasks that need a lot of exploration and are sparse-reward tasks, genetic methods can do better than DQN, A3C and others.
+
+Here we will briefly describe the algorithm. Readers that are interested in the details of the experiments should read the paper. The authors note that while GAs (genetic algorithms) always outperform random search, on some Atari games, random search was able to beat powerful algorithms like DQN and A3C. They hypothesize that this might be because of bad gradient estimates, local optima or some other force. The authors also note that although neural nets in supervised learning do not to suffer from local optima, in RL local optima is still very much a problem because the reward signal may encourage the agent to perform locally good actions that prevent it from discovering globally optimal behavior. The method they propose here is easily parallelizable to a large number of cores. They point out that they use a very simple GA so as to set a baseline for future work and demonstrate how effective even a simple GA can be at training neural nets for deep RL problems. 
+
+Now for the algorithm itself: we start with a population of weight vectors $$\theta_1, ...\theta_n$$ where each $$\theta_i$$ is a weight vector representing the weights of a neural net. We evolve this population as follows: pick the top few performing individuals from the population and sample from them at random, with replacement. Add a Gaussian noise to each individual so like $$\theta = \theta + \epsilon \sigma$$ where $$\sigma = N(0, I)$$. Do this $$n-1$$ times to get $$n-1$$ individuals of the next generation. Then, also add the top performing individual from the previous generation, which rounds out the new generation. That’s it! 
+
+One other thing they propose is that to encode each individual takes a lot of memory and network transmission cost which makes the above algorithm infeasible to scale to deep neural nets. They propose a novel encoding in order to bypass this: “represent each parameter vector as an initialization seed plus the list of random seeds that produce the series of mutations applied to $$\theta$$”. This way we don’t need to pass around the whole vector, just the series of seed transformations that lead to the current individual. Cool! This algorithm is highly parallelizable for obvious reasons and given a large number of CPUs, the wall clock time of training these algorithms can be quite impressive.
+The authors also describe some novelty search methods to increase exploration in the populations by using a distance metric that measures the average distance to the $$k$$ nearest neighbors, in terms of a metric called behavioral distance.
+
+Head over to [arxiv](https://arxiv.org/abs/1712.06567) to read about the details of the algorithm, the experimental setup and more cool stuff.
